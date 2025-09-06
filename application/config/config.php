@@ -23,7 +23,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/Game/';
+// $config['base_url'] = 'http://localhost/Game/';
+$host = $_SERVER['HTTP_HOST'];
+
+$is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (!empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
+    || strpos($host, 'ngrok') !== false
+    || strpos($host, 'trycloudflare.com') !== false; // Add this line
+
+$scheme = $is_https ? 'https' : 'http';
+
+$config['base_url'] = $scheme . '://' . $host . '/Game/';
 
 /*
 |--------------------------------------------------------------------------
