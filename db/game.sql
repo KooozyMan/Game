@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2025 at 05:53 PM
+-- Generation Time: Sep 06, 2025 at 01:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -75,10 +75,17 @@ INSERT INTO `alphabet` (`id`, `letter`) VALUES
 CREATE TABLE `questions` (
   `question_id` int(11) NOT NULL,
   `type_id` int(11) DEFAULT NULL,
-  `question` varchar(1000) DEFAULT NULL,
-  `answer` varchar(255) DEFAULT NULL,
+  `question` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `answer` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `letter_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`question_id`, `type_id`, `question`, `answer`, `letter_id`) VALUES
+(11, 16, 'dswa', 'dsa', 2);
 
 -- --------------------------------------------------------
 
@@ -88,8 +95,16 @@ CREATE TABLE `questions` (
 
 CREATE TABLE `types` (
   `type_id` int(11) NOT NULL,
-  `type` varchar(50) DEFAULT NULL
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `types`
+--
+
+INSERT INTO `types` (`type_id`, `type`) VALUES
+(16, 'رياضة'),
+(17, 'إسلامي');
 
 --
 -- Indexes for dumped tables
@@ -129,13 +144,13 @@ ALTER TABLE `alphabet`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

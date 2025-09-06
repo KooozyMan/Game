@@ -55,6 +55,14 @@ select {
     background-color: #aaa;
 }
 
+textarea:focus,
+select:focus,
+input:focus {
+    outline: none;
+    border: 2px solid #3498db; /* light blue border */
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.6); /* subtle glow */
+}
+
 .fontsize {
     font-size: 24px;
 }
@@ -84,9 +92,9 @@ select {
 .hexagon-button {
     width: 180px;
     height: 104px;
-    background: #3498db;
+    background: linear-gradient(145deg, #4aa3df, #2e86c1); /* gradient blue */
     color: white;
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
     border: none;
     cursor: pointer;
@@ -96,25 +104,30 @@ select {
         75% 100%, 25% 100%,
         0% 50%
     );
-    display: block;
-    line-height: 52px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 6px;
     margin-left: -39px;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-.hexagon-button:not(.red-edge):not(.green-edge):hover {
-    transform: scale(1.05);
+.hexagon-button:not(.red-edge):not(.green-edge):hover:not(.green):hover:not(.red):hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(145deg, #5dade2, #2874a6);
 }
 
 .red-edge {
-    background: #e74c3c !important;
+    background: linear-gradient(145deg, #e74c3c, #c0392b) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
     cursor: default;
 }
 
 .green-edge {
-    background: #27ae60 !important;
+    background: linear-gradient(145deg, #27ae60, #1e8449) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
     cursor: default;
 }
 
@@ -159,4 +172,223 @@ select {
 
 .state2 {
     background-color: #e74c3c;
+}
+
+#pop-up {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 600px;
+    min-width: 300px;
+    min-height: 400px;
+    height: auto;
+    padding: 0;
+    z-index: 1000;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transform: translate(-50%, -60%);
+}
+
+#pop-up form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 520px;
+    width: 100%;
+    min-height: 400px;
+    height: 100%;
+    padding: 30px; 
+    margin-bottom: 0px;
+    box-sizing: border-box;
+}
+
+.types {
+    background: linear-gradient(145deg, #d6ecff, #9cc9f5);
+    border: 2px solid #4a90e2;
+    color: #0f2c52;
+    font-weight: bold;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2rem; /* larger text */
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.types:hover {
+    background: linear-gradient(145deg, #c3e2ff, #82b9f2);
+    transform: scale(1.03);
+}
+
+.types select {
+    margin-top: 10px;
+    padding: 10px 14px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: 2px solid #4a90e2;
+    background: #f0f8ff;
+    color: #0f2c52;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+}
+
+.types select:hover {
+    background: #e1f0ff;
+    border-color: #357ac9;
+}
+
+.types option {
+    font-size: 1rem;
+    padding: 8px;
+    background: #5c6b7c;
+    color: #ffffff;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.types option:checked {
+    background: #4a90e2;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.close-pop-up {
+    margin-top: 28px;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.letter-showcase {
+    text-align: center;
+    font-size: 40px;
+}
+
+.question-curtain {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.question {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 430px;
+    border-radius: 12px;
+    background: rgba(52, 152, 219, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.green {
+    background: linear-gradient(145deg, #b6f2c7, #6fdc89);
+    border: 2px solid #3b9c5f;
+    color: #0f5132;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.green:hover {
+    background: linear-gradient(145deg, #a3eab8, #5ccf7a);
+    transform: scale(1.05);
+}
+
+.red {
+    background: linear-gradient(145deg, #f8c7c7, #e96d6d);
+    border: 2px solid #b02a37;
+    color: #661f1f;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.red:hover {
+    background: linear-gradient(145deg, #f4a8a8, #e04c4c);
+    transform: scale(1.05);
+}
+
+.unborder {
+    border: none;
+}
+
+#timer-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#timer {
+    background: linear-gradient(145deg, #d6ecff, #9cc9f5);
+    border: 2px solid #4a90e2;
+    color: #0f2c52;
+    font-weight: bolder;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    width: 60%;
+    text-align: center;
+    font-size: 2rem; /* larger text */
+    transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.win div {
+    display: flex;
+    justify-content: center;
+}
+
+.green-win,
+.red-win {
+    width: 45%;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.red-win {
+    margin: 0px 20px;
+}
+
+.reset {
+    background: linear-gradient(145deg, #d6ecff, #9cc9f5);
+    border: 2px solid #4a90e2;
+    color: #0f2c52;
+    font-weight: bolder;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 20px auto 0px;
+    transition: transform 0.15s ease, background 0.3s ease;
+}
+
+.reset:hover {
+    background: linear-gradient(145deg, #d6ecff, #9cc9f5);
+    transform: scale(1.05);
 }
