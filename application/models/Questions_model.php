@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Questions_model extends CI_Model
 {
+    // scraped questions from https://rufaa2.yoo7.com/t1036-topic
     public function add_question($question, $typeId, $answer, $letter)
     {
         return $this->db->insert('questions', [

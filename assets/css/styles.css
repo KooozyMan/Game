@@ -284,9 +284,9 @@ input:focus {
     margin-bottom: 20px;
 }
 
-.question {
+.question, .answer {
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #2c3e50;
@@ -391,4 +391,8 @@ input:focus {
 .reset:hover {
     background: linear-gradient(145deg, #d6ecff, #9cc9f5);
     transform: scale(1.05);
+}
+
+.answer {
+    margin: 10px auto 20px;
 }

@@ -41,7 +41,8 @@
     <div id="pop-up" style="display:none;">
         <form>
             <h2 id="display_letter" class="letter-showcase"></h2>
-            <select id="type" class="types">
+            <select id="type" class="types" disabled>
+                <option value="22">Scraped</option>
                 <option value="">-- Select --</option>
                 <?php foreach ($types as $t): ?>
                     <option value="<?= $t['type_id'] ?>"><?= $t['type'] ?></option>
@@ -49,9 +50,13 @@
             </select>
             <button id="question-curtain" type="button" onclick="showQuestion()" class="question-curtain"></button>
             <textarea id="question" class="question" style="display:none;" readonly></textarea>
+            <textarea id="answer" class="answer" style="display:none;" readonly></textarea>
             <div id="timer-container">
                 <span id="timer">01:00</span>
             </div>
+
+            <button type="button" class="reset answer" onclick="showAnswer()">Show Answer</button>
+
             <div class="win">
                 <button type="button" class="green-win green" onclick="colorLetter('green')">Green Won</button>
                 <button type="button" class="red-win red" onclick="colorLetter('red')">Red Won</button>
@@ -74,6 +79,10 @@
             });
         });
     });
+
+    function showAnswer() {
+        document.getElementById('answer').style.display = 'block';
+    }
 
     function colorLetter(color) {
         const id = window.currentLetter;
@@ -120,6 +129,7 @@
         document.getElementById('pop-up').style.display = 'none';
         document.getElementById('question-curtain').style.display = 'block';
         document.getElementById('question').style.display = 'none';
+        document.getElementById('answer').style.display = 'none';
         clearInterval(timerInterval);
         document.getElementById('timer').innerText = '01:00';
     }
@@ -135,7 +145,7 @@
             return;
         }
         startTimer(secondsTimer);
-        console.log(letter + type);
+
         document.getElementById('question-curtain').style.display = 'none';
         document.getElementById('question').style.display = 'block';
 
@@ -152,7 +162,8 @@
                     const data = JSON.parse(text);
 
                     if (data.status === "success") {
-                        document.getElementById('question').innerText = data.question + data.answer;
+                        document.getElementById('question').innerText = data.question;
+                        document.getElementById('answer').innerText = data.answer;
                     } else if (data.status === "error1") {
                         document.getElementById('question').innerText = "لم يتم العثور على سؤال";
                     } else if (data.status === "error2") {
