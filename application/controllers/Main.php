@@ -68,6 +68,7 @@ class Main extends CI_Controller
                 return;
             }
             $usedIds[] = $question['question_id'];
+            $this->session->set_userdata('questionId', $question['question_id']);
             $this->session->set_userdata($sessionKey, $usedIds);
 
             echo json_encode([

@@ -29,4 +29,12 @@ class Questions_model extends CI_Model
 
         return $this->db->get()->row_array();
     }
+
+    public function get_question($questionId)
+    {
+        return $this->db->select('question, answer')
+            ->from('questions')
+            ->where('question_id', $questionId)
+            ->get()->row_array();
+    }
 }
