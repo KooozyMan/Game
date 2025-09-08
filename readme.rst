@@ -15,7 +15,7 @@ Setup
 5. Create a new database called ``game``.
 6. Import the SQL file:
    - Use ``game with scraped questions.sql`` for a full set of questions.
-   | You can use ``game.sql``, but it has almost no questions and requires some code refactoring (TODO).
+   | *You can use ``game.sql``, but it has almost no questions and requires some code refactoring (TODO).*
 7. Launch the app in your browser:
    - ``http://localhost/Game/`` for the main page.
    - ``http://localhost/Game/Add`` to add new questions.
